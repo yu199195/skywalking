@@ -18,12 +18,12 @@
 
 package org.apache.skywalking.apm.testcase.shardingsphere;
 
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.service.CommonService;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.service.CommonService;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.repository.jdbc.JDBCOrderItemRepositoryImpl;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.repository.jdbc.JDBCOrderRepositoryImpl;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.repository.service.RawPojoService;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.utils.DataSourceUtil;
 import org.apache.skywalking.apm.testcase.shardingsphere.service.config.ShardingDatabasesAndTablesConfigurationPrecise;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.repository.jdbc.JDBCOrderItemRepositoryImpl;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.repository.jdbc.JDBCOrderRepositoryImpl;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.repository.service.RawPojoService;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.utility.config.DataSourceUtil;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.support.SpringBootServletInitializer;

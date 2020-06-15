@@ -16,12 +16,12 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.api.service;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.api.service;
 
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.Order;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.OrderItem;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository.OrderItemRepository;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository.OrderRepository;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.Order;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.OrderItem;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository.OrderItemRepository;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository.OrderRepository;
 
 import java.util.ArrayList;
 import java.util.List;

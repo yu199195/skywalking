@@ -16,9 +16,10 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository;
 
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.Order;
+
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.Order;
 
 public interface OrderRepository extends CommonRepository<Order> {
 }

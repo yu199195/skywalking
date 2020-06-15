@@ -16,10 +16,10 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.repository.jdbc;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.repository.jdbc;
 
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.Order;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository.OrderRepository;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.Order;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository.OrderRepository;
 
 import javax.sql.DataSource;
 import java.sql.*;

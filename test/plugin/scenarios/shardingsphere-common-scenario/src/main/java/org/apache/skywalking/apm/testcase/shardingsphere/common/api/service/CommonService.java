@@ -16,14 +16,17 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.utility.config;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.api.service;
 
-import javax.sql.DataSource;
-import java.sql.SQLException;
+public interface CommonService {
 
-public interface ExampleConfiguration {
+    void initEnvironment();
 
-    DataSource createDataSource() throws SQLException;
+    void cleanEnvironment();
 
-    DataSource getDataSource();
+    void processSuccess(boolean isRangeSharding);
+
+    void processFailure();
+
+    void printData(boolean isRangeSharding);
 }

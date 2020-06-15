@@ -16,7 +16,7 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity;
 
 import java.io.Serializable;
 

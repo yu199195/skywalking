@@ -24,9 +24,9 @@ import org.apache.shardingsphere.api.config.sharding.TableRuleConfiguration;
 import org.apache.shardingsphere.api.config.sharding.strategy.InlineShardingStrategyConfiguration;
 import org.apache.shardingsphere.api.config.sharding.strategy.StandardShardingStrategyConfiguration;
 import org.apache.shardingsphere.shardingjdbc.api.ShardingDataSourceFactory;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.utils.DataSourceUtil;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.utils.ExampleConfiguration;
 import org.apache.skywalking.apm.testcase.shardingsphere.service.utility.algorithm.PreciseModuloShardingTableAlgorithm;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.utility.config.DataSourceUtil;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.utility.config.ExampleConfiguration;
 
 import javax.sql.DataSource;
 import java.sql.SQLException;

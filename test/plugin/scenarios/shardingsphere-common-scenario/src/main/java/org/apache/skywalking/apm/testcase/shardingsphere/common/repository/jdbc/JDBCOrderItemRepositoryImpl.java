@@ -16,13 +16,17 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.repository.jdbc;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.repository.jdbc;
 
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.OrderItem;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository.OrderItemRepository;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.OrderItem;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository.OrderItemRepository;
 
 import javax.sql.DataSource;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.List;
 

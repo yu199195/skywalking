@@ -16,7 +16,7 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.utility.config;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.utils;
 
 import org.apache.commons.dbcp2.BasicDataSource;
 

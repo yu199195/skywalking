@@ -16,15 +16,16 @@
  *
  */
 
-package org.apache.skywalking.apm.testcase.shardingsphere.service.repository.service;
+package org.apache.skywalking.apm.testcase.shardingsphere.common.repository.service;
 
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.Order;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.entity.OrderItem;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository.OrderItemRepository;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.repository.OrderRepository;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.api.service.CommonServiceImpl;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.repository.jdbc.JDBCOrderItemRepositoryImpl;
-import org.apache.skywalking.apm.testcase.shardingsphere.service.repository.jdbc.JDBCOrderRepositoryImpl;
+
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.Order;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.entity.OrderItem;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository.OrderItemRepository;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.repository.OrderRepository;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.api.service.CommonServiceImpl;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.repository.jdbc.JDBCOrderItemRepositoryImpl;
+import org.apache.skywalking.apm.testcase.shardingsphere.common.repository.jdbc.JDBCOrderRepositoryImpl;
 
 public class RawPojoService extends CommonServiceImpl {
 
