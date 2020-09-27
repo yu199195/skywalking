@@ -113,6 +113,7 @@ property key | Description | Default |
 `meter.active`|If true, the agent collects and reports metrics to the backend.|`true`|
 `meter.report_interval`|Report meters interval. The unit is second|`20`|
 `meter.max_meter_size`| Max size of the meter pool |`500`|
+`plugin.mount` | Mount the specific folders of the plugins. Plugins in mounted folders would work. | `plugins,activations` |
 `plugin.peer_max_length `|Peer maximum description limit.|`200`|
 `plugin.exclude_plugins `|Exclude some plugins define in plugins dir.Plugin names is defined in [Agent plugin list](Plugin-list.md)|`""`|
 `plugin.mongodb.trace_param`|If true, trace all the parameters in MongoDB access, default is false. Only trace the operation, not include parameters.|`false`|
@@ -148,6 +149,7 @@ property key | Description | Default |
 `plugin.dubbo.collect_provider_arguments`| Apache Dubbo provider collect `arguments` in RPC call, use `Object#toString` to collect `arguments`. |`false`| 
 `plugin.dubbo.consumer_provider_length_threshold`| When `plugin.dubbo.provider_consumer_arguments` is `true`, Arguments of length from the front will to the OAP backend |`256`| 
 `plugin.kafka.bootstrap_servers`| A list of host/port pairs to use for establishing the initial connection to the Kafka cluster. | `localhost:9092`
+`plugin.kafka.get_topic_timeout`| Timeout period of reading topics from the Kafka server, the unit is second. |`10`|
 `plugin.kafka.consumer_config`| Kafka producer configuration. ||
 `plugin.kafka.producer_config`| Kafka producer configuration. Read [producer configure](http://kafka.apache.org/24/documentation.html#producerconfigs) to get more details. Check [Kafka report doc](How-to-enable-kafka-reporter.md) for more details and examples. | |
 `plugin.kafka.topic_meter` | Specify which Kafka topic name for Meter System data to report to. | `skywalking_meters` |
