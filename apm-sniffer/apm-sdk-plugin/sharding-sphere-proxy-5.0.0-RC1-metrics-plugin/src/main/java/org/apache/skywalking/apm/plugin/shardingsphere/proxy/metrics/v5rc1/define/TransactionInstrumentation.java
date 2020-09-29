@@ -25,6 +25,7 @@ import org.apache.skywalking.apm.agent.core.plugin.interceptor.InstanceMethodsIn
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.ClassInstanceMethodsEnhancePluginDefine;
 import org.apache.skywalking.apm.agent.core.plugin.match.ClassMatch;
 import org.apache.skywalking.apm.agent.core.plugin.match.NameMatch;
+import org.apache.skywalking.apm.plugin.shardingsphere.proxy.metrics.v5rc1.MethodNameConstant;
 
 import static net.bytebuddy.matcher.ElementMatchers.named;
 
@@ -48,7 +49,7 @@ public class TransactionInstrumentation extends ClassInstanceMethodsEnhancePlugi
                 new InstanceMethodsInterceptPoint() {
                     @Override
                     public ElementMatcher<MethodDescription> getMethodsMatcher() {
-                        return named("commit").or(named("rollback"));
+                        return named(MethodNameConstant.COMMIT).or(named(MethodNameConstant.ROLL_BACK));
                     }
                 
                     @Override

@@ -19,6 +19,9 @@
 package org.apache.skywalking.apm.plugin.shardingsphere.proxy.metrics.v5rc1;
 
 import java.lang.reflect.Method;
+import org.apache.skywalking.apm.agent.core.meter.Counter;
+import org.apache.skywalking.apm.agent.core.meter.CounterMode;
+import org.apache.skywalking.apm.agent.core.meter.MeterFactory;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.InstanceMethodsAroundInterceptor;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
@@ -29,22 +32,26 @@ import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInt
  */
 public class TransactionInterceptor implements InstanceMethodsAroundInterceptor {
     
+    private static final Counter COMMIT = MeterFactory.counter("proxy_transaction_commit").mode(CounterMode.INCREMENT).build();
+    
+    private static final Counter ROLLBACK = MeterFactory.counter("proxy_transaction_rollback").mode(CounterMode.INCREMENT).build();
+    
     @Override
-    public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) throws Throwable {
-        sayHello(method);
+    public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) {
+        String methodName = method.getName();
+        if (MethodNameConstant.COMMIT.equals(methodName)) {
+            COMMIT.increment(1);
+        } else if (MethodNameConstant.ROLL_BACK.equals(methodName)) {
+            ROLLBACK.increment(1);
+        }
     }
     
     @Override
-    public Object afterMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret) throws Throwable {
-        return null;
+    public Object afterMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret) {
+        return ret;
     }
     
     @Override
     public void handleMethodException(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t) {
-    
-    }
-    
-    private void sayHello(Method method) {
-        String name = method.getName();
     }
 }

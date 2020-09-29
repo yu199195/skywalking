@@ -19,6 +19,9 @@
 package org.apache.skywalking.apm.plugin.shardingsphere.proxy.metrics.v5rc1;
 
 import java.lang.reflect.Method;
+import java.util.Arrays;
+import org.apache.skywalking.apm.agent.core.meter.Histogram;
+import org.apache.skywalking.apm.agent.core.meter.MeterFactory;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.InstanceMethodsAroundInterceptor;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
@@ -29,17 +32,25 @@ import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInt
  */
 public class ProxyRunInterceptor implements InstanceMethodsAroundInterceptor {
     
+    private static final Histogram HISTOGRAM = MeterFactory.histogram("proxy_execute_latency_millis").steps(Arrays.asList(5.0, 10.0, 25.0, 50.0, 75.0, 100.0, 250.0, 500.0, 750.0, 1000.0, 2500.0, 5000.0, 7500.0, 10000.0, 50000.0)).minValue(0).build();
+    
     @Override
-    public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) throws Throwable {
+    public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) {
+        ElapsedTimeThreadLocal.INSTANCE.set(System.currentTimeMillis());
     }
     
     @Override
-    public Object afterMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret) throws Throwable {
-        return null;
+    public Object afterMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret) {
+        try {
+            long elapsedTime = System.currentTimeMillis() - ElapsedTimeThreadLocal.INSTANCE.get();
+            HISTOGRAM.addValue(elapsedTime);
+            return ret;
+        } finally {
+            ElapsedTimeThreadLocal.INSTANCE.remove();
+        }
     }
     
     @Override
     public void handleMethodException(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t) {
-    
     }
 }

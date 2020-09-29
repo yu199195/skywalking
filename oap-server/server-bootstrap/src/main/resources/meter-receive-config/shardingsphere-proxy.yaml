@@ -1,0 +1,83 @@
+# Licensed to the Apache Software Foundation (ASF) under one or more
+# contributor license agreements.  See the NOTICE file distributed with
+# this work for additional information regarding copyright ownership.
+# The ASF licenses this file to You under the Apache License, Version 2.0
+# (the "License"); you may not use this file except in compliance with
+# the License.  You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
+meters:
+  - name: proxy_total_request
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["proxy_total_request"]
+  - name: connection_total
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["connection_total"]
+  - name: sql_select
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["sql_select"]
+  - name: sql_update
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["sql_update"]
+  - name: sql_insert
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["sql_insert"]
+  - name: sql_delete
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["sql_delete"]
+  - name: proxy_transaction_commit
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["proxy_transaction_commit"]
+  - name: proxy_transaction_rollback
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["proxy_transaction_rollback"]
+  - name: route_datasource
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["route_datasource"]
+  - name: route_table
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avg
+      value: meter["route_table"]
+  - name: proxy_execute_latency_millis
+    scope:
+      type: SERVICE_INSTANCE
+    meter:
+      operation: avgHistogramPercentile
+      value: meter["proxy_execute_latency_millis"]
+

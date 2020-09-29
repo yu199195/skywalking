@@ -19,6 +19,10 @@
 package org.apache.skywalking.apm.plugin.shardingsphere.proxy.metrics.v5rc1;
 
 import java.lang.reflect.Method;
+import java.util.concurrent.atomic.DoubleAdder;
+import org.apache.skywalking.apm.agent.core.meter.Counter;
+import org.apache.skywalking.apm.agent.core.meter.CounterMode;
+import org.apache.skywalking.apm.agent.core.meter.MeterFactory;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.EnhancedInstance;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.InstanceMethodsAroundInterceptor;
 import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInterceptResult;
@@ -29,22 +33,36 @@ import org.apache.skywalking.apm.agent.core.plugin.interceptor.enhance.MethodInt
  */
 public class ChannelHandlerInterceptor implements InstanceMethodsAroundInterceptor {
     
-    @Override
-    public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) throws Throwable {
-        sayHello(method);
+    private static final Counter COUNTER = MeterFactory.counter("proxy_total_request").mode(CounterMode.INCREMENT).build();
+    
+    private static final DoubleAdder CONNECTION = new DoubleAdder();
+    
+    public ChannelHandlerInterceptor() {
+        MeterFactory.gauge("connection_total", CONNECTION::doubleValue).build();
     }
     
     @Override
-    public Object afterMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret) throws Throwable {
-        return null;
+    public void beforeMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, MethodInterceptResult result) {
+        collectMetrics(method.getName());
+    }
+    
+    @Override
+    public Object afterMethod(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Object ret) {
+        return ret;
     }
     
     @Override
     public void handleMethodException(EnhancedInstance objInst, Method method, Object[] allArguments, Class<?>[] argumentsTypes, Throwable t) {
-    
     }
     
-    private void sayHello(Method method) {
-        String name = method.getName();
+    private void collectMetrics(String methodName) {
+        if (MethodNameConstant.CHANNEL_READ.equals(methodName)) {
+            COUNTER.increment(1);
+        } else if (MethodNameConstant.CHANNEL_ACTIVE.equals(methodName)) {
+            CONNECTION.add(1.0);
+        } else if (MethodNameConstant.CHANNEL_INACTIVE.equals(methodName)) {
+            CONNECTION.add(-1.0);
+        }
     }
+    
 }

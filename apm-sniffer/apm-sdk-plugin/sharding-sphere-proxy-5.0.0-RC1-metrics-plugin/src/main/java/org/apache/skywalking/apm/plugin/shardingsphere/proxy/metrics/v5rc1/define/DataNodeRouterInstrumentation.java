@@ -29,11 +29,11 @@ import org.apache.skywalking.apm.agent.core.plugin.match.NameMatch;
 import static net.bytebuddy.matcher.ElementMatchers.named;
 
 /**
- * DataNodeRouterInstrumentation presents that skywalking intercepts org.apache.shardingsphere.infra.router.DataNodeRouter.
+ * DataNodeRouterInstrumentation presents that skywalking intercepts org.apache.shardingsphere.infra.route.DataNodeRouter.
  */
 public class DataNodeRouterInstrumentation extends ClassInstanceMethodsEnhancePluginDefine {
     
-    private static final String ENHANCE_CLASS = "org.apache.shardingsphere.infra.router.DataNodeRouter";
+    private static final String ENHANCE_CLASS = "org.apache.shardingsphere.infra.route.DataNodeRouter";
     
     private static final String EXECUTE_INTERCEPTOR_CLASS = "org.apache.skywalking.apm.plugin.shardingsphere.proxy.metrics.v5rc1.DataNodeRouterInterceptor";
     
